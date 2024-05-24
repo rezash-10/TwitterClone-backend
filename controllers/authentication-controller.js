@@ -55,7 +55,18 @@ const registerUser = (req, res,next) => {
  
             if(msg=='1'&&size!=0){
                 //save user profile image
-            const targetPath = './src/user_profiles/' + fileName;
+                const dirname = './src/user_profiles/'
+                const targetPath =  dirname+ fileName;
+
+                if(!fs.existsSync(dirname)){
+                    fs.mkdirSync('./src/user_profiles/',{ recursive: true },(err)=>{
+                        if (err) {
+                            console.log(err)
+                            // Handle file moving error
+                            return sendResponse('Error creating directory',500,res);
+                          }
+                    })
+                }
 
                 fs.rename(temporaryPath, targetPath, (err) => {
                     if (err) {
@@ -65,6 +76,7 @@ const registerUser = (req, res,next) => {
                     return sendResponse(msg,200,res);
 
                   });
+
             }else{
                 sendResponse(msg,200,res);
 
