@@ -6,6 +6,6 @@ const jsonParser = bodyParser.json()
 //*******************************************1*/
 router.post('/register',registerUser)
 router.post('/login',jsonParser,loginUser)
-router.post('/logout',jsonParser,logoutUser)
+router.get('/logout',jsonParser,logoutUser)
 //*******************************************1*/
 module.exports = router;
