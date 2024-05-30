@@ -24,7 +24,7 @@ ACTIVE = true
 ```bash
 # register user
 API_URL = POST(form-data):http://localhost:3000/register
-REQUEST_ARGS = {first_name,last_name,username,email,birthday_date,password,password_conf,user_profile(image)}
+REQUEST_ARGS = {name,username,email,birthday_date,password,password_conf,user_profile(image)}
 RESPONSE = JsonObject
 RESPONSE_SAMPLE = {msg:"1"} => successfull , {msg:"other message than 1"} => show this error to user
 ACTIVE = true

@@ -4,9 +4,9 @@ const saltRounds = 10
 const tableName = process.env.USER_TABLE
 //********************************************/
 function createNewUser(json,profileUrl,callback){
-    let { first_name, last_name, username, email,birthday_date,password} = json;
+    let { name, username, email,birthday_date,password} = json;
     
-    pool.query(`select firstname from ${tableName} where username = '${username}'` , function(err,res){
+    pool.query(`select name from ${tableName} where username = '${username}'` , function(err,res){
         if(err){
             callback("There is error in handling event(1023)");
             return;
@@ -21,8 +21,8 @@ function createNewUser(json,profileUrl,callback){
             return bcrypt.hash(password, salt)
         })
         .then(hash => {
-            pool.query(`insert into ${tableName} (firstname,lastname,username,email,password,birthday_date,register_date,profile_url) values
-             (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)`,[first_name,last_name,username,email,hash,birthday_date,profileUrl],(err,res)=>{
+            pool.query(`insert into ${tableName} (name,username,email,password,birthday_date,register_date,profile_url) values
+             (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)`,[name,username,email,hash,birthday_date,profileUrl],(err,res)=>{
                 if(err){
                     console.log("(E)createNewUser : "+err)
                     callback("There is error in handling event(1024)");

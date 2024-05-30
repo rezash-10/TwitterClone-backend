@@ -51,7 +51,7 @@ function createCouseTables(){
 
     });
 
-    pool.query(`create table if not exists ${userTable} (username varchar(255) primary key ,firstname varchar(255) ,lastname varchar(255), email varchar(255),birthday_date date,register_date timestamp , profile_url varchar(255),password varchar(255))`,(err,res)=>{
+    pool.query(`create table if not exists ${userTable} (username varchar(255) primary key ,name varchar(255) , email varchar(255),birthday_date date,register_date timestamp , profile_url varchar(255),password varchar(255))`,(err,res)=>{
 
         if(err)throw err;
         pool.end(function (err) {

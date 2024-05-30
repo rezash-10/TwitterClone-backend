@@ -14,8 +14,7 @@ const registerUser = (req, res,next) => {
           return sendResponse('Form parsing error',400,res);
         }
         const json = {
-            first_name : fields.first_name[0],
-            last_name : fields.last_name[0],
+            name : fields.name[0],
             username : fields.username[0],
             email : fields.email[0],
             birthday_date : fields.birthday_date[0],
@@ -23,8 +22,8 @@ const registerUser = (req, res,next) => {
             password_conf : fields.password_conf[0]
 
         }
-        let { first_name, last_name, username, email,birthday_date,password,password_conf} = json;
-        if(!first_name.trim()||!last_name.trim()||!username.trim()||!email.trim()||!password.trim()||!password_conf.trim()||!birthday_date.trim()){
+        let { name, username, email,birthday_date,password,password_conf} = json;
+        if(!name.trim()||!username.trim()||!email.trim()||!password.trim()||!password_conf.trim()||!birthday_date.trim()){
         
             return sendResponse("Fill the blank fields",200,res);
         }
