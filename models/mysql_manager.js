@@ -5,7 +5,6 @@ const authenticationQueries = require('./authentication-queries')
 dotenv.config({ path: './.env'})
 const databaseName = process.env.DATABASE
 
-console.log("createPool")
 const pool = mysql.createPool({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,

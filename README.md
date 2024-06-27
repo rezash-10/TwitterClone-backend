@@ -46,4 +46,25 @@ RESPONSE = JsonObject
 RESPONSE_SAMPLE = {msg:"1"} => successfull , {msg:"other message than 1"} => show this error to user
 ACTIVE = true
 ```
+For using following apis considers following workflow in your code:
+1. After register user and get "1" response from server, redirect user to user authentication page
+2. In user authentication page , user should enter the code send to his/her email(use "register_auth" api).
+3. Authentication code has 3 min expire time , so if it expires , use resend code button (use "resend_auth_code" api)
+
+```bash
+# send auth code
+API_URL = POST(raw-json):http://localhost:3000/register_auth
+REQUEST_ARGS = {auth_code(int)}
+RESPONSE = JsonObject
+RESPONSE_SAMPLE = {msg:"1"} => successfull , {msg:"other message than 1"} => show this error to user
+ACTIVE = true
+```
+
+```bash
+# send auth code
+API_URL = POST(raw-json):http://localhost:3000/resend_auth_code
+RESPONSE = JsonObject
+RESPONSE_SAMPLE = {msg:"1"} => successfull , {msg:"other message than 1"} => show this error to user
+ACTIVE = true
+```
 

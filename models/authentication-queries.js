@@ -1,11 +1,10 @@
 const pool = require('./mysql_manager')
 const bcrypt = require("bcryptjs")
+const nodemailer = require('nodemailer');
 const saltRounds = 10
 const tableName = process.env.USER_TABLE
 //********************************************/
-function createNewUser(json,profileUrl,callback){
-    let { name, username, email,birthday_date,password} = json;
-    
+function checkUserExists(username,callback){
     pool.query(`select name from ${tableName} where username = '${username}'` , function(err,res){
         if(err){
             callback("There is error in handling event(1023)");
@@ -15,30 +14,39 @@ function createNewUser(json,profileUrl,callback){
             callback("Username is not available");
             return;
         }
-        bcrypt
-        .genSalt(saltRounds)
-        .then(salt => {
-            return bcrypt.hash(password, salt)
-        })
-        .then(hash => {
-            pool.query(`insert into ${tableName} (name,username,email,password,birthday_date,register_date,profile_url) values
-             (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)`,[name,username,email,hash,birthday_date,profileUrl],(err,res)=>{
-                if(err){
-                    console.log("(E)createNewUser : "+err)
-                    callback("There is error in handling event(1024)");
-                    return;
-                }
-            callback("1");
-            return;
-            })
-            
-            
-            
-        })
-        .catch(err => console.error(err.message))
-    
-    
+        callback("1");
+        return;
     })
+
+}
+//********************************************/
+function createNewUser(json,profileUrl,callback){
+    let { name, username, email,birthday_date,password} = json;
+    
+    
+    bcrypt
+    .genSalt(saltRounds)
+    .then(salt => {
+        return bcrypt.hash(password, salt)
+    })
+    .then(hash => {
+        pool.query(`insert into ${tableName} (name,username,email,password,birthday_date,register_date,profile_url) values
+         (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)`,[name,username,email,hash,birthday_date,profileUrl],(err,res)=>{
+            if(err){
+                console.log("(E)createNewUser : "+err)
+                callback("There is error in handling event(1024)");
+                return;
+            }
+        callback("1");
+        return;
+        })
+        
+        
+        
+    })
+    .catch(err => console.error(err.message))
+    
+    
     
 
 }
@@ -94,5 +102,5 @@ function checkUserLogin (json,callback){
 
 //********************************************/
 module.exports={
-    createNewUser,checkUserLogin
+    createNewUser,checkUserLogin,checkUserExists
 }

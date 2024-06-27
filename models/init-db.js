@@ -6,7 +6,6 @@ const databaseName = process.env.DATABASE
 const userTable = process.env.USER_TABLE
 
 function initDB(){
-    console.log("createDbInstance")
     let pool = mysql.createPool({
         host: process.env.DATABASE_HOST,
         user: process.env.DATABASE_USER,
@@ -41,7 +40,6 @@ function initDB(){
 //------------------------------------------------/
 function createCouseTables(){
 
-    console.log("createCouseTables")
 
     let pool = mysql.createPool({
         host: process.env.DATABASE_HOST,
