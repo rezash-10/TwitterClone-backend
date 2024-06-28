@@ -3,7 +3,7 @@ const postTableName = process.env.POST_TABLE
 //********************************************/
 function fetchPosts(username=null, callback) {
     if(username) {
-        pool.query(`SELECT date, username, text FROM ${postTableName} WHERE ${postTableName}.username = ?`,[username], (err, result) => {
+        pool.query(`SELECT id, date, username, likes, text FROM ${postTableName} WHERE ${postTableName}.username = ?`,[username], (err, result) => {
             if(err) {
                 console.log(`Fetching Posts of ${username} err: `+err)
                 return
@@ -12,7 +12,7 @@ function fetchPosts(username=null, callback) {
         })
     }
     else {
-        pool.query(`SELECT date, username, text FROM ${postTableName}`, (err, result) => {
+        pool.query(`SELECT id, date, username, likes, text FROM ${postTableName}`, (err, result) => {
             if(err) {
                 console.log(`Fetching Posts err: `+err)
                 return
