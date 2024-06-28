@@ -64,6 +64,7 @@ function createCouseTables(){
             username varchar(255),
             text VARCHAR(1000),
             date date,
+            likes MEDIUMINT DEFAULT 0,
             foreign key (username) references ${userTable}(username)
             )`,(err,res)=>{
 
