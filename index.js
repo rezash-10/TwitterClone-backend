@@ -24,6 +24,7 @@ app.use('/', require('./routes/temp'));
 app.use('/', require('./routes/authentication'));
 app.use('/', require('./routes/post'));
 app.use('/', require('./routes/posts'));
+app.use('/', require('./routes/like'));
 
 //*******************************************1*/
 app.listen(3000, () => {

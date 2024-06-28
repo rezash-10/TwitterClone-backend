@@ -113,3 +113,15 @@ RESPONSE_SAMPLE =
     ]
 ACTIVE = true
 ```
+
+```bash
+# Liking Posts
+API_URL = GET:http://localhost:3000/like/:postId
+RESPONSE = JsonObject
+RESPONSE_SAMPLE = 
+    (200) {msg:"1"} => successfull ,
+    (403) {error:"Need to Login first!"} => anonymous users can not like posts,
+    (404) {error:"Post with postId=4 doesn't exists"} => posts should not be empty,
+    (500) {error:"Error querying DB, error_code"} => date is mandatory
+ACTIVE = true
+```
