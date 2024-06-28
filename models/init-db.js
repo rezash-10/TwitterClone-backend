@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 dotenv.config({ path: './.env'})
 const databaseName = process.env.DATABASE
 const userTable = process.env.USER_TABLE
+const postTable = process.env.POST_TABLE
 
 function initDB(){
     let pool = mysql.createPool({
@@ -55,6 +56,21 @@ function createCouseTables(){
         pool.end(function (err) {
             if(err) throw err
           });
-    })   
+    })
+    
+    pool.query(
+        `create table if not exists ${postTable} (
+            id MEDIUMINT NOT NULL AUTO_INCREMENT primary key, 
+            username varchar(255),
+            text VARCHAR(1000),
+            date date,
+            foreign key (username) references ${userTable}(username)
+            )`,(err,res)=>{
+
+        if(err)throw err;
+        pool.end(function (err) {
+            if(err) throw err
+          });
+    })  
 }
 initDB()

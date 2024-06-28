@@ -21,6 +21,8 @@ RESPONSE = JsonArray
 ACTIVE = true
 ```
 
+##### Auth-related APIs
+
 ```bash
 # register user
 API_URL = POST(form-data):http://localhost:3000/register
@@ -68,3 +70,42 @@ RESPONSE_SAMPLE = {msg:"1"} => successfull , {msg:"other message than 1"} => sho
 ACTIVE = true
 ```
 
+##### Post-related APIs
+
+```bash
+# Adding Posts
+API_URL = POST(JSON):http://localhost:3000/post
+REQUEST_BODY_SAMPLE = 
+    {
+        "text": "My New Post",
+        "date": "2020-11-19"
+    }
+RESPONSE = JsonObject
+RESPONSE_SAMPLE = 
+    {msg:"1"} => successfull ,
+    {msg:"Need to Login first!"} => anonymous users can not post,
+    {msg:"Can't post empty posts"} => posts should not be empty,
+    {msg:"Date field is missing"} => date is mandatory
+ACTIVE = true
+```
+
+```bash
+# Retrieve posts
+# Has an optional path param, if you pass it, it retrieves the posts of that specific user,if not, retrieves all the posts
+API_URL = GET:http://localhost:3000/posts/:username?
+RESPONSE = JsonObject
+RESPONSE_SAMPLE = 
+    [
+        {
+            "date": "2020-12-01T20:30:00.000Z",
+            "username": "testUser",
+            "text": "testPost"
+        },
+        {
+            "date": "2020-11-30T20:30:00.000Z",
+            "username": "testUser2",
+            "text": "undefined"
+        }
+    ]
+ACTIVE = true
+```
