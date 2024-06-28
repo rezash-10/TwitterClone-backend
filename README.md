@@ -15,9 +15,21 @@ DATABASE_PASSWORD = your_password
 
 ### Available apis 
 ```bash
-# get dummy users(for test purpose)
-API_URL = GET:http://localhost:3000/users
-RESPONSE = JsonArray
+# get user
+API_URL = GET:http://localhost:3000/user/:username
+RESPONSE = JsonObject
+RESPONSE_SAMPLE = 
+    {
+        "name": "John Duo",
+        "posts": [
+            {
+                 "id": 2,
+                "date": "2020-12-04T20:30:00.000Z",
+                "text": "Post Content",
+                "likes": 0
+            }
+        ]
+    }
 ACTIVE = true
 ```
 
