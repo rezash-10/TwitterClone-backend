@@ -20,7 +20,7 @@ app.use(session(
       saveUninitialized: false,
       cookie: { secure: false,expires:1800000 }
     }));
-app.use('/', require('./routes/temp'));
+app.use('/', require('./routes/users'));
 app.use('/', require('./routes/authentication'));
 app.use('/', require('./routes/post'));
 app.use('/', require('./routes/posts'));

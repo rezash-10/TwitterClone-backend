@@ -1,7 +1,7 @@
 const express = require('express');
-const {getFakeJsonArr} = require('../controllers/temp-controller');
+const {getUsers} = require('../controllers/user-controller');
 const router = express.Router();
 //*******************************************1*/
-router.get('/users', getFakeJsonArr);
+router.get('/users/:username', getUsers);
 //*******************************************1*/
 module.exports = router;
