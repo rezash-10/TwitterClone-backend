@@ -97,13 +97,17 @@ RESPONSE = JsonObject
 RESPONSE_SAMPLE = 
     [
         {
+            "id": "4",
             "date": "2020-12-01T20:30:00.000Z",
             "username": "testUser",
+            "likes": "10",
             "text": "testPost"
         },
         {
+            "id": "5",
             "date": "2020-11-30T20:30:00.000Z",
             "username": "testUser2",
+            "likes": "15",
             "text": "undefined"
         }
     ]
