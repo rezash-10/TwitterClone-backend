@@ -2,7 +2,7 @@ const pool = require('./mysql_manager')
 const postTableName = process.env.POST_TABLE
 const userTableName = process.env.USER_TABLE
 //********************************************/
-function fetchUsers(username, callback) {
+function fetchUser(username, callback) {
   if(username) {
     q1 = `SELECT name FROM ${userTableName} WHERE username = ?`
     q2 = `SELECT p.id, p.date, p.text, p.likes
@@ -29,5 +29,5 @@ function fetchUsers(username, callback) {
   }
 }
 module.exports = {
-    fetchUsers
+    fetchUser
 }

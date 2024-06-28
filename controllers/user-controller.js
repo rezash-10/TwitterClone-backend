@@ -1,8 +1,8 @@
-let {fetchUsers} = require("../models/users-manager");
+let {fetchUser} = require("../models/user-manager");
 
-const getUsers = (req, res, next) => {
+const getUser = (req, res, next) => {
     console.log(`Fetching user ${req.params.username}`);
-    fetchUsers(req.params.username, (err, result)=>{
+    fetchUser(req.params.username, (err, result)=>{
         if(err == 404){
             return res.status(404).json({error: `User ${req.params.username} doesn't exist`})
         }
@@ -13,5 +13,5 @@ const getUsers = (req, res, next) => {
     })
 }
 module.exports = {
-    getUsers
+    getUser
 }
