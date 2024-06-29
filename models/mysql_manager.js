@@ -1,6 +1,5 @@
 const mysql = require("mysql")
 const dotenv = require('dotenv')
-const authenticationQueries = require('./authentication-queries')
 //********************************************/
 dotenv.config({ path: './.env'})
 const databaseName = process.env.DATABASE
